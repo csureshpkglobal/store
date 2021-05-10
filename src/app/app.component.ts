@@ -15,9 +15,7 @@ export class AppComponent implements OnInit{
   constructor(private booksService:BooksService, private cartService:CartService){} 
   ngOnInit(){
       this.cartService.cart$.subscribe(response => {
-      console.log("RECIEVED");
-      console.log(response);
-      this.cartCount = response.length;
+      this.cartCount = response;
     })
   }
   title = 'store';

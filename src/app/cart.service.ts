@@ -14,6 +14,6 @@ export class CartService {
   addCartItem(id:string){
     console.log("Cart Service: "+ id);
     this.cartItems.push(id);
-    this.cart$.next(this.cartItems);
+    this.cart$.next(this.cartItems.length);
   }
 }

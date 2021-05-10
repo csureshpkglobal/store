@@ -23,7 +23,6 @@ export class BookDetailsComponent implements OnInit {
   }
   addToCart(){
     this.cartService.addCartItem(this.bookDetails.id);
-    this.cartService.cart$.next(this.bookDetails.id);
   }
 
 }
