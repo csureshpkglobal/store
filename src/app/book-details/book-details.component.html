@@ -1,0 +1,31 @@
+<mat-card> 
+    <mat-card-title>
+         {{ bookDetails.volumeInfo.title }} 
+         <img [src]="bookDetails.volumeInfo?.imageLinks?.thumbnail"/>
+    </mat-card-title>
+    <mat-card-content>
+            <div class="rating">
+                Rating : {{ bookDetails.volumeInfo?.ratingsCount}}
+            </div>
+            <div class="publisher">
+                Publisher : {{ bookDetails.volumeInfo.publisher}}
+            </div>
+            <div class="pageCount">
+                Page Count : {{ bookDetails.volumeInfo.pageCount}}
+            </div>
+            <div class="Language">
+                Language : {{ bookDetails.volumeInfo.language}}
+            </div>
+            <div class="description">
+                    {{ bookDetails.volumeInfo.description}}
+            </div>
+            <div class="written">
+                Written By {{bookDetails.volumeInfo.authors }}
+            </div>
+          
+    </mat-card-content>
+    <mat-card-actions>
+        <button color='primary' mat-flat-button (click) = "addToCart()"> Add to Card </button>
+        <button color='primary' mat-flat-button> Buy </button>
+    </mat-card-actions>
+</mat-card>
