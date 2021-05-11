@@ -1,6 +1,6 @@
 <form #f="ngForm" (ngSubmit)="onSubmit(f)">
       <mat-form-field>
-            <input matInput name="search" ngModel required #search="ngModel" placeholder="Search in Library">
+            <input matInput name="search" [ngModel]= 'searchWord' required #search="ngModel" placeholder="Search in Library">
             
       </mat-form-field>
       <span (click)="onSubmit(f)" class="material-icons searchicon">search </span>

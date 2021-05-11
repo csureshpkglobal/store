@@ -11,9 +11,18 @@ export class CartService {
   getCartItems(){
     return this.cartItems;
   }
-  addCartItem(id:string){
-    console.log("Cart Service: "+ id);
-    this.cartItems.push(id);
+  addCartItem(book:any){
+    console.log("Cart Service: "+ book.id);
+    this.cartItems.push(book);
     this.cart$.next(this.cartItems.length);
+    console.log(this.cartItems);
+  }
+  deleteItem(id: string) {
+    console.log(id);
+    let index = this.cartItems.findIndex(item => item.id == id);
+    this.cartItems.splice(index, 1);
+    this.cart$.next(this.cartItems.length);
+    console.log(this.cartItems);
+
   }
 }
