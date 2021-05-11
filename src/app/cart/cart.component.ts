@@ -16,4 +16,7 @@ export class CartComponent implements OnInit {
   deleteItem(id) {
     this.cartService.deleteItem(id);
   }
+  proceedToCheckout() {
+    console.log('proceedToCheckout: ');
+  }
 }

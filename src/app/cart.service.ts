@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { Book } from './book.model';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +12,7 @@ export class CartService {
   getCartItems() {
     return this.cartItems;
   }
-  addCartItem(book: any) {
+  addCartItem(book: Book) {
     console.log('Cart Service: ' + book.id);
     this.cartItems.push(book);
     this.cart$.next(this.cartItems.length);
