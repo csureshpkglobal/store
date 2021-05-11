@@ -17,7 +17,12 @@
     </mat-card>
   </div>
   <div class="action">
-    <button color="primary" mat-flat-button (click)="proceedToCheckout()">
+    <button
+      color="primary"
+      *ngIf="cartItems.length"
+      mat-flat-button
+      (click)="proceedToCheckout()"
+    >
       Proceed to purchase
     </button>
   </div>

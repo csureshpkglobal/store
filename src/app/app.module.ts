@@ -10,9 +10,10 @@ import { MaterialModule } from './material/material.module';
 import { FormsModule } from '@angular/forms';
 import { BookDetailsComponent } from './book-details/book-details.component';
 import { CartService } from './cart.service';
+import { BillingPageComponent } from './billing-page/billing-page.component';
 
 @NgModule({
-  declarations: [AppComponent, routingComponents, BookDetailsComponent],
+  declarations: [AppComponent, routingComponents, BookDetailsComponent, BillingPageComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
