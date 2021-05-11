@@ -7,20 +7,22 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { SearchComponent } from './search/search.component';
 
 const routes: Routes = [
-  { path: '', redirectTo:'/search', pathMatch:"full"},
-  { path: 'search', component: SearchComponent},
-  { path: 'cart', component: CartComponent},
-  { path: 'mycollection', component: MycollectionComponent},
-  { path: 'bookdetails', component: BookDetailsComponent},
-  { path: '**', component: PageNotFoundComponent},
+  { path: '', redirectTo: '/search', pathMatch: 'full' },
+  { path: 'search', component: SearchComponent },
+  { path: 'cart', component: CartComponent },
+  { path: 'mycollection', component: MycollectionComponent },
+  { path: 'bookdetails', component: BookDetailsComponent },
+  { path: '**', component: PageNotFoundComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
-export const routingComponents = [SearchComponent,
-                                  CartComponent,
-                                  MycollectionComponent,
-                                  PageNotFoundComponent];
+export class AppRoutingModule {}
+export const routingComponents = [
+  SearchComponent,
+  CartComponent,
+  MycollectionComponent,
+  PageNotFoundComponent,
+];

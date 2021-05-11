@@ -4,11 +4,11 @@ import { CartService } from '../cart.service';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.css']
+  styleUrls: ['./cart.component.css'],
 })
 export class CartComponent implements OnInit {
   cartItems = [];
-  constructor(private cartService:CartService) { }
+  constructor(private cartService: CartService) {}
 
   ngOnInit(): void {
     this.cartItems = this.cartService.getCartItems();
@@ -16,5 +16,4 @@ export class CartComponent implements OnInit {
   deleteItem(id) {
     this.cartService.deleteItem(id);
   }
-
 }

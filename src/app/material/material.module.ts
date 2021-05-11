@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
-import { MatButtonModule} from '@angular/material/button';
-import { MatSidenavModule} from '@angular/material/sidenav';
-import { MatCardModule} from '@angular/material/card';
-import { MatFormFieldModule} from '@angular/material/form-field';
-import { MatInputModule} from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
-import { MatBadgeModule} from '@angular/material/badge';
+import { MatBadgeModule } from '@angular/material/badge';
 
-const materialComponents=[
+const materialComponents = [
   MatButtonModule,
   MatSidenavModule,
   MatCardModule,
@@ -16,15 +16,11 @@ const materialComponents=[
   MatInputModule,
   MatToolbarModule,
   MatIconModule,
-  MatBadgeModule
+  MatBadgeModule,
 ];
 
 @NgModule({
-  imports: [
-    materialComponents
-  ],
-  exports:[
-    materialComponents
-  ]
+  imports: [materialComponents],
+  exports: [materialComponents],
 })
-export class MaterialModule { }
+export class MaterialModule {}
