@@ -25,9 +25,17 @@
         >shopping_cart</mat-icon
       >Cart
     </div>
+
     <br />
     <div routerLink="/mycollection">
-      <mat-icon>library_books</mat-icon> My Collection
+      <mat-icon
+        [matBadgeHidden]="!collectionCount"
+        [matBadge]="collectionCount"
+        matBadgeColor="warn"
+        matBadgePosition="above before"
+        >library_books</mat-icon
+      >
+      My Collection
     </div>
   </mat-sidenav>
 

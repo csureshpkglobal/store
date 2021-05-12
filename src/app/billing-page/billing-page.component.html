@@ -2,21 +2,27 @@
   <mat-label>Billing Info</mat-label>
   <mat-form-field appearance="fill">
     <mat-label>Your name</mat-label>
-    <input matInput />
+    <input matInput ngModel name="name" />
   </mat-form-field>
   <mat-form-field appearance="fill">
     <mat-label>Your email</mat-label>
-    <input matInput placeholder="pk@example.com" required />
+    <input
+      matInput
+      ngModel
+      name="email"
+      placeholder="pk@example.com"
+      required
+    />
     <!-- <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error> -->
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Your phone number</mat-label>
-    <input matInput />
+    <input matInput ngModel name="phone" />
   </mat-form-field>
   <mat-form-field appearance="fill">
     <mat-label>Your address</mat-label>
-    <textarea matInput></textarea>
+    <textarea matInput ngModel name="address"></textarea>
   </mat-form-field>
   <button color="primary" mat-flat-button [disabled]="!isValid">Submit</button>
 </form>
