@@ -4,6 +4,8 @@ import { Book } from '../book.model';
 import { CartService } from '../cart.service';
 import { Collection } from '../collection.model';
 import { MycollectionService } from '../mycollection.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { SnakBarComponent } from '../snak-bar/snak-bar.component';
 
 @Component({
   selector: 'app-billing-page',
@@ -13,7 +15,8 @@ import { MycollectionService } from '../mycollection.service';
 export class BillingPageComponent implements OnInit {
   constructor(
     private mycollectionService: MycollectionService,
-    private cartService: CartService
+    private cartService: CartService,
+    private _snackBar: MatSnackBar
   ) {}
   isValid: boolean = true;
   books: Book[] = [];
@@ -49,6 +52,10 @@ export class BillingPageComponent implements OnInit {
       if (this.isCart) {
         this.cartService.clearItems();
       }
+      this._snackBar.openFromComponent(SnakBarComponent, {
+        duration: 5000,
+        panelClass: 'blue-snackbar',
+      });
     });
   }
 }

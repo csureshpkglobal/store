@@ -12,6 +12,7 @@ import { BookDetailsComponent } from './book-details/book-details.component';
 import { CartService } from './cart.service';
 import { BillingPageComponent } from './billing-page/billing-page.component';
 import { MycollectionService } from './mycollection.service';
+import { SnakBarComponent } from './snak-bar/snak-bar.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { MycollectionService } from './mycollection.service';
     routingComponents,
     BookDetailsComponent,
     BillingPageComponent,
+    SnakBarComponent,
   ],
   imports: [
     BrowserModule,
