@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Book } from '../book.model';
 import { CartService } from '../cart.service';
+import { MycollectionService } from '../mycollection.service';
 
 @Component({
   selector: 'app-cart',
@@ -8,8 +10,12 @@ import { CartService } from '../cart.service';
   styleUrls: ['./cart.component.css'],
 })
 export class CartComponent implements OnInit {
-  cartItems = [];
-  constructor(private cartService: CartService, private router: Router) {}
+  cartItems: Book[] = [];
+  constructor(
+    private cartService: CartService,
+    private mycollectionService: MycollectionService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.cartItems = this.cartService.getCartItems();
@@ -18,6 +24,8 @@ export class CartComponent implements OnInit {
     this.cartService.deleteItem(id);
   }
   proceedToCheckout() {
+    console.log('proceedToCheckout');
+    this.mycollectionService.mycollection$.next(this.cartItems);
     this.router.navigate(['/billingpage']);
   }
 }

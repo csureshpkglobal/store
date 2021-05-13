@@ -25,4 +25,8 @@ export class CartService {
     this.cart$.next(this.cartItems.length);
     console.log(this.cartItems);
   }
+  clearItems() {
+    this.cartItems = [];
+    this.cart$.next(this.cartItems.length);
+  }
 }

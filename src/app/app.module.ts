@@ -11,9 +11,15 @@ import { FormsModule } from '@angular/forms';
 import { BookDetailsComponent } from './book-details/book-details.component';
 import { CartService } from './cart.service';
 import { BillingPageComponent } from './billing-page/billing-page.component';
+import { MycollectionService } from './mycollection.service';
 
 @NgModule({
-  declarations: [AppComponent, routingComponents, BookDetailsComponent, BillingPageComponent],
+  declarations: [
+    AppComponent,
+    routingComponents,
+    BookDetailsComponent,
+    BillingPageComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -22,7 +28,7 @@ import { BillingPageComponent } from './billing-page/billing-page.component';
     MaterialModule,
     FormsModule,
   ],
-  providers: [BooksService, CartService],
+  providers: [BooksService, CartService, MycollectionService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
