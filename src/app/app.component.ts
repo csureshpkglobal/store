@@ -24,7 +24,6 @@ export class AppComponent implements OnInit {
       this.cartCount = response;
     });
     this.mycollectionService.count$.subscribe((response) => {
-      console.log(response);
       this.collectionCount = response;
     });
   }

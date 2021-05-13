@@ -24,7 +24,6 @@ export class CartComponent implements OnInit {
     this.cartService.deleteItem(id);
   }
   proceedToCheckout() {
-    console.log('proceedToCheckout');
     this.mycollectionService.mycollection$.next(this.cartItems);
     this.router.navigate(['/billingpage']);
   }

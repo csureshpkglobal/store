@@ -11,10 +11,7 @@ export class MycollectionService {
   count$ = new BehaviorSubject(null);
 
   ngOninit() {
-    this.mycollection$.subscribe((res) => {
-      console.log('Collection');
-      console.log(res);
-    });
+    this.mycollection$.subscribe((res) => {});
   }
   constructor() {}
   getCollections() {

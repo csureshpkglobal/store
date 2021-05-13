@@ -24,8 +24,6 @@ export class BillingPageComponent implements OnInit {
   isCart: boolean = false;
   ngOnInit(): void {
     this.mycollectionService.mycollection$.subscribe((res) => {
-      console.log('In Billing page - Book Details: ');
-      console.log(Array.isArray(res));
       if (Array.isArray(res)) {
         this.isCart = true;
         res.forEach((book) => {
