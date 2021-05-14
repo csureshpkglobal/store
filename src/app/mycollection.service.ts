@@ -10,9 +10,6 @@ export class MycollectionService {
   mycollection$ = new BehaviorSubject(null);
   count$ = new BehaviorSubject(null);
 
-  ngOninit() {
-    this.mycollection$.subscribe((res) => {});
-  }
   constructor() {}
   getCollections() {
     return this.collections;

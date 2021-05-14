@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { Book } from '../book.model';
 import { BooksService } from '../books.service';
 import { CartService } from '../cart.service';
 import { MycollectionService } from '../mycollection.service';
@@ -9,18 +11,27 @@ import { MycollectionService } from '../mycollection.service';
   templateUrl: './book-details.component.html',
   styleUrls: ['./book-details.component.css'],
 })
-export class BookDetailsComponent implements OnInit {
+export class BookDetailsComponent implements OnInit, OnDestroy {
+  id: string;
+  bookDetails: Book;
+  subscriptions: Subscription[] = [];
+
   constructor(
     private booksService: BooksService,
     private cartService: CartService,
     private myCollectionService: MycollectionService,
     private router: Router
   ) {}
-  id: string;
-  bookDetails: any;
   ngOnInit(): void {
-    this.booksService.books$.subscribe((response) => {
-      this.bookDetails = response;
+    this.subscriptions.push(
+      this.booksService.books$.subscribe((response) => {
+        this.bookDetails = response;
+      })
+    );
+  }
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((subscription) => {
+      subscription.unsubscribe();
     });
   }
   addToCart() {

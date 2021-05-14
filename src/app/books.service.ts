@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Book } from './book.model';
 
@@ -13,7 +13,7 @@ export class BooksService {
 
   constructor(private httpClient: HttpClient) {}
   getBooksByName(name: string) {
-    return this.httpClient
+    this.httpClient
       .get('https://www.googleapis.com/books/v1/volumes?q=' + name)
       .pipe(
         map((res: any) => {
@@ -34,7 +34,10 @@ export class BooksService {
           });
           return books;
         })
-      );
+      )
+      .subscribe((books) => {
+        this.books$.next(books);
+      });
   }
   setSearchKeyWord(search: string) {
     this.search = search;

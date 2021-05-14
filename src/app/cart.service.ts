@@ -6,8 +6,9 @@ import { Book } from './book.model';
   providedIn: 'root',
 })
 export class CartService {
-  cartItems = [];
+  cartItems: Book[] = [];
   cart$ = new BehaviorSubject(null);
+
   constructor() {}
   getCartItems() {
     return this.cartItems;

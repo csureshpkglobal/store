@@ -9,8 +9,8 @@ import { MycollectionService } from '../mycollection.service';
 })
 export class MycollectionComponent implements OnInit {
   collections: Collection[] = [];
-  constructor(private mycollectionService: MycollectionService) {}
 
+  constructor(private mycollectionService: MycollectionService) {}
   ngOnInit(): void {
     this.collections = this.mycollectionService.getCollections();
   }
