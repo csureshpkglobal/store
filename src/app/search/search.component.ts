@@ -24,7 +24,8 @@ export class SearchComponent implements OnInit, OnDestroy {
         this.items = books;
       })
     );
-    this.booksService.getBooksByName(this.searchWord);
+    if (this.searchWord != '')
+      this.booksService.getBooksByName(this.searchWord);
   }
   ngOnDestroy(): void {
     this.subscriptions.forEach((subscription) => {

@@ -2,19 +2,26 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BillingPageComponent } from './billing-page/billing-page.component';
 import { BookDetailsComponent } from './book-details/book-details.component';
-import { CartComponent } from './cart/cart.component';
-import { MycollectionComponent } from './mycollection/mycollection.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { SearchComponent } from './search/search.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/search', pathMatch: 'full' },
   { path: 'search', component: SearchComponent },
-  { path: 'cart', component: CartComponent },
-  { path: 'mycollection', component: MycollectionComponent },
+  {
+    path: 'cart',
+    loadChildren: () =>
+      import('./carts/carts.module').then((m) => m.CartsModule),
+  },
+  {
+    path: 'mycollection',
+    loadChildren: () =>
+      import('./mycollections/mycollections.module').then(
+        (m) => m.MycollectionsModule
+      ),
+  },
   { path: 'bookdetails', component: BookDetailsComponent },
   { path: 'billingpage', component: BillingPageComponent },
-  { path: '**', component: PageNotFoundComponent },
+  { path: '', redirectTo: '/search', pathMatch: 'full' },
 ];
 
 @NgModule({
@@ -24,8 +31,6 @@ const routes: Routes = [
 export class AppRoutingModule {}
 export const routingComponents = [
   SearchComponent,
-  CartComponent,
-  MycollectionComponent,
   BillingPageComponent,
   PageNotFoundComponent,
 ];
