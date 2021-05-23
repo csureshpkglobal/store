@@ -1,4 +1,4 @@
-<mat-card>
+<mat-card *ngIf="bookDetails">
   <mat-card-title>
     {{ bookDetails.title }}
     <img [src]="bookDetails.imageLink" />

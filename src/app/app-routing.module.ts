@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BillingPageComponent } from './billing-page/billing-page.component';
 import { BookDetailsComponent } from './book-details/book-details.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { SearchComponent } from './search/search.component';
 
 const routes: Routes = [
@@ -29,8 +28,4 @@ const routes: Routes = [
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
-export const routingComponents = [
-  SearchComponent,
-  BillingPageComponent,
-  PageNotFoundComponent,
-];
+export const routingComponents = [SearchComponent, BillingPageComponent];

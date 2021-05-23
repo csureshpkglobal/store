@@ -1,5 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  NgForm,
+  Validators,
+} from '@angular/forms';
 import { Book } from '../book.model';
 import { CartService } from '../cart.service';
 import { Collection } from '../collection.model';
@@ -23,8 +29,16 @@ export class BillingPageComponent implements OnInit, OnDestroy {
   constructor(
     private mycollectionService: MycollectionService,
     private cartService: CartService,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private fb: FormBuilder
   ) {}
+  billingForm = this.fb.group({
+    name: [''],
+    email: ['', Validators.required],
+    phone: '',
+    address: '',
+  });
+
   ngOnInit(): void {
     this.subscriptions.push(
       this.mycollectionService.mycollection$.subscribe((res) => {
@@ -45,25 +59,26 @@ export class BillingPageComponent implements OnInit, OnDestroy {
       subscription.unsubscribe();
     });
   }
-  onSubmit(f: NgForm) {
+  onSubmit(name: string, email: string, phone: number, address: string) {
     this.books.forEach((book) => {
       this.collection = {
-        title: book.title || '',
-        description: book.description || '',
-        authors: book.authors || '',
-        name: f.value.name || '',
-        email: f.value.email || '',
-        phone: f.value.phone || '',
-        address: f.value.address || '',
+        title: book?.title || '',
+        description: book?.description || '',
+        authors: book?.authors || '',
+        name: name || '',
+        email: email || '',
+        phone: phone || 0,
+        address: address || '',
       };
       this.mycollectionService.addCollection(this.collection);
       if (this.isCart) {
         this.cartService.clearItems();
       }
       this._snackBar.openFromComponent(SnakBarComponent, {
-        duration: 5000,
+        duration: 2000,
         panelClass: 'blue-snackbar',
       });
+      return true;
     });
   }
 }

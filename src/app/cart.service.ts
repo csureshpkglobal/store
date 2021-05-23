@@ -19,8 +19,10 @@ export class CartService {
   }
   deleteItem(id: string) {
     let index = this.cartItems.findIndex((item) => item.id == id);
-    this.cartItems.splice(index, 1);
-    this.cart$.next(this.cartItems.length);
+    if (index != -1) {
+      this.cartItems.splice(index, 1);
+      this.cart$.next(this.cartItems.length);
+    }
   }
   clearItems() {
     this.cartItems = [];

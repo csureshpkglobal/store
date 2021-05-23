@@ -15,6 +15,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   items: Book[] = [];
   searchWord: string = '';
   subscriptions: Subscription[] = [];
+  search: string = '';
 
   constructor(private booksService: BooksService, private router: Router) {}
   ngOnInit() {
@@ -25,16 +26,20 @@ export class SearchComponent implements OnInit, OnDestroy {
       })
     );
     if (this.searchWord != '')
-      this.booksService.getBooksByName(this.searchWord);
+      this.booksService.getBooksByName(this.searchWord).subscribe((result) => {
+        this.items = result;
+      });
   }
   ngOnDestroy(): void {
     this.subscriptions.forEach((subscription) => {
       subscription.unsubscribe();
     });
   }
-  onSubmit(f: NgForm) {
-    this.booksService.getBooksByName(f.value.search);
-    this.booksService.setSearchKeyWord(f.value.search);
+  onSubmit(search: string) {
+    this.booksService.getBooksByName(search).subscribe((result) => {
+      this.items = result;
+    });
+    this.booksService.setSearchKeyWord(search);
   }
   getBookDetails(id: string) {
     this.booksService.books$.next(this.items[id]);

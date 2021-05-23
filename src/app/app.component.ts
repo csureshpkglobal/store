@@ -14,6 +14,7 @@ export class AppComponent implements OnInit, OnDestroy {
   cartCount: number = 0;
   collectionCount: number = 0;
   subscriptions: Subscription[] = [];
+  title: string = 'store';
 
   constructor(
     private booksService: BooksService,

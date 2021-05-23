@@ -13,31 +13,28 @@ export class BooksService {
 
   constructor(private httpClient: HttpClient) {}
   getBooksByName(name: string) {
-    this.httpClient
-      .get('https://www.googleapis.com/books/v1/volumes?q=' + name)
-      .pipe(
-        map((res: any) => {
-          let books: Book[] = [];
-          res.items.map((item: any) => {
-            let book: Book = {
-              id: item.id,
-              title: item.volumeInfo.title,
-              imageLink: item.volumeInfo?.imageLinks?.thumbnail,
-              description: item.volumeInfo.description,
-              authors: item.volumeInfo.authors,
-              ratingsCount: item.volumeInfo.ratingsCount,
-              publisher: item.volumeInfo.publisher,
-              pageCount: item.volumeInfo.pageCount,
-              language: item.volumeInfo.language,
-            };
-            books.push(book);
-          });
-          return books;
-        })
-      )
-      .subscribe((books) => {
-        this.books$.next(books);
-      });
+    let URL = 'https://www.googleapis.com/books/v1/volumes?q=' + name;
+
+    return this.httpClient.get(URL).pipe(
+      map((res: any) => {
+        let books: Book[] = [];
+        res.items.map((item: any) => {
+          let book: Book = {
+            id: item.id,
+            title: item.volumeInfo.title,
+            imageLink: item.volumeInfo?.imageLinks?.thumbnail,
+            description: item.volumeInfo.description,
+            authors: item.volumeInfo.authors,
+            ratingsCount: item.volumeInfo.ratingsCount,
+            publisher: item.volumeInfo.publisher,
+            pageCount: item.volumeInfo.pageCount,
+            language: item.volumeInfo.language,
+          };
+          books.push(book);
+        });
+        return books;
+      })
+    );
   }
   setSearchKeyWord(search: string) {
     this.search = search;

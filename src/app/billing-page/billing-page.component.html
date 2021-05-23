@@ -1,15 +1,25 @@
-<form id="billingForm" #f="ngForm" (ngSubmit)="onSubmit(f)">
+<form
+  id="billingForm"
+  [formGroup]="billingForm"
+  (ngSubmit)="
+    onSubmit(
+      billingForm.value.name,
+      billingForm.value.email,
+      billingForm.value.phone,
+      billingForm.value.address
+    )
+  "
+>
   <mat-label>Billing Info</mat-label>
   <mat-form-field appearance="fill">
     <mat-label>Your name</mat-label>
-    <input matInput ngModel name="name" />
+    <input matInput formControlName="name" />
   </mat-form-field>
   <mat-form-field appearance="fill">
     <mat-label>Your email</mat-label>
     <input
       matInput
-      ngModel
-      name="email"
+      formControlName="email"
       placeholder="pk@example.com"
       required
     />
@@ -18,11 +28,11 @@
 
   <mat-form-field appearance="fill">
     <mat-label>Your phone number</mat-label>
-    <input matInput ngModel name="phone" />
+    <input matInput formControlName="phone" />
   </mat-form-field>
   <mat-form-field appearance="fill">
     <mat-label>Your address</mat-label>
-    <textarea matInput ngModel name="address"></textarea>
+    <textarea formControlName="address" matInput></textarea>
   </mat-form-field>
   <button color="primary" mat-flat-button [disabled]="!isValid">Submit</button>
 </form>

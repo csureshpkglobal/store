@@ -9,7 +9,9 @@
       placeholder="Search in Library"
     />
   </mat-form-field>
-  <span (click)="onSubmit(f)" class="material-icons searchicon">search </span>
+  <span (click)="onSubmit(f.value.search)" class="material-icons searchicon"
+    >search
+  </span>
 </form>
 <div *ngFor="let item of items; let i = index">
   <mat-card (click)="getBookDetails(i)">
