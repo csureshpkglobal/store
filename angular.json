@@ -1,31 +1,33 @@
 {
-  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
-  "newProjectRoot": "projects",
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "defaultProject": "store",
   "projects": {
     "store": {
       "projectType": "application",
       "schematics": {},
-      "root": "",
-      "sourceRoot": "src",
+      "root": "apps/store",
+      "sourceRoot": "apps/store/src",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/store",
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.app.json",
+            "outputPath": "dist/apps/store",
+            "index": "apps/store/src/index.html",
+            "main": "apps/store/src/main.ts",
+            "polyfills": "apps/store/src/polyfills.ts",
+            "tsConfig": "apps/store/tsconfig.app.json",
             "aot": true,
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "apps/store/src/favicon.ico",
+              "apps/store/src/assets"
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
-              "src/styles.css"
+              "apps/store/src/styles.css"
             ],
             "scripts": []
           },
@@ -33,8 +35,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
+                  "replace": "apps/store/src/environments/environment.ts",
+                  "with": "apps/store/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -60,7 +62,7 @@
           }
         },
         "serve": {
-          "disableHostCheck" : false,
+          "disableHostCheck": false,
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "browserTarget": "store:build"
@@ -80,17 +82,17 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.spec.json",
-            "karmaConfig": "karma.conf.js",
+            "main": "apps/store/src/test.ts",
+            "polyfills": "apps/store/src/polyfills.ts",
+            "tsConfig": "apps/store/tsconfig.spec.json",
+            "karmaConfig": "apps/store/karma.conf.js",
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "apps/store/src/favicon.ico",
+              "apps/store/src/assets"
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
-              "src/styles.css"
+              "apps/store/src/styles.css"
             ],
             "scripts": []
           }
@@ -99,9 +101,8 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "tsconfig.app.json",
-              "tsconfig.spec.json",
-              "e2e/tsconfig.json"
+              "apps/store/tsconfig.app.json",
+              "apps/store/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -121,7 +122,33 @@
           }
         }
       }
+    },
+    "store-e2e": {
+      "root": "apps/store-e2e",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "apps/store-e2e/protractor.conf.js",
+            "devServerTarget": "store:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "store:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "apps/store-e2e/tsconfig.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
-  },
-  "defaultProject": "store"
+  }
 }

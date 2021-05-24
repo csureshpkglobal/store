@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterModule } from '@angular/router';
-import { Book } from 'src/app/book.model';
-import { CartService } from 'src/app/cart.service';
-import { MycollectionService } from 'src/app/mycollection.service';
+import { Book } from '../../book.model';
+import { CartService } from '../../cart.service';
+import { MycollectionService } from '../../mycollection.service';
 
 import { CartItemComponent } from './cart-item.component';
 
