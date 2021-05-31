@@ -29,16 +29,16 @@ export class BookDetailsComponent implements OnInit, OnDestroy {
       })
     );
   }
-  ngOnDestroy(): void {
-    this.subscriptions.forEach((subscription) => {
-      subscription.unsubscribe();
-    });
-  }
   addToCart() {
     this.cartService.addCartItem(this.bookDetails);
   }
   buyNow() {
     this.myCollectionService.mycollection$.next(this.bookDetails);
     this.router.navigate(['/billingpage']);
+  }
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((subscription) => {
+      subscription.unsubscribe();
+    });
   }
 }

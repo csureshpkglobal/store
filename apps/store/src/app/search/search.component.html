@@ -13,17 +13,19 @@
     >search
   </span>
 </form>
-<div *ngFor="let item of items; let i = index">
-  <mat-card (click)="getBookDetails(i)">
-    <mat-card-title>
-      {{ item.title }}
-      <img [src]="item.imageLink" />
-    </mat-card-title>
-    <mat-card-content>
-      <div class="description">
-        {{ item.description }}
-      </div>
-      <div class="written">Written By {{ item.authors }}</div>
-    </mat-card-content>
-  </mat-card>
-</div>
+<mat-grid-list cols="2" rowHeight="2:1">
+  <mat-grid-tile *ngFor="let item of items; let i = index">
+    <mat-card (click)="getBookDetails(i)">
+      <mat-card-title>
+        {{ item.title }}
+        <img [src]="item.imageLink" />
+      </mat-card-title>
+      <mat-card-content>
+        <div class="description">
+          {{ item.description }}
+        </div>
+        <div class="written">Written By {{ item.authors }}</div>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>

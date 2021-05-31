@@ -1,5 +1,6 @@
 export interface Collection {
   title: string;
+  imgLink: string;
   description: string;
   authors: string;
 

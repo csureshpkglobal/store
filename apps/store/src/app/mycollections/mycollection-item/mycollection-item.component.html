@@ -3,18 +3,34 @@
     <mat-card>
       <mat-card-title>
         {{ collection.title }}
+        <img [src]="collection.imgLink" />
       </mat-card-title>
       <mat-card-content>
         <div class="description">
           {{ collection.description }}
         </div>
-        <div class="written">Written By {{ collection.authors }}</div>
+        <div>
+          <span class="bold">Written By</span>
+        </div>
+        <div class="written">
+          {{ collection.authors }}
+        </div>
 
-        <div class="billingTitle">Billing Address:</div>
-        <div class="name">Name:{{ collection.name }}</div>
-        <div class="email">Email: {{ collection.email }}</div>
-        <div class="phone">Phone:{{ collection.phone }}</div>
-        <div class="address">Address: {{ collection.address }}</div>
+        <div class="billingTitle">
+          <span class="bold">Billing Address:</span>
+        </div>
+        <div class="name">
+          <span class="bold">Name:</span>{{ collection.name }}
+        </div>
+        <div class="email">
+          <span class="bold">Email: </span>{{ collection.email }}
+        </div>
+        <div class="phone">
+          <span class="bold">Phone:</span>{{ collection.phone }}
+        </div>
+        <div class="address">
+          <span class="bold">Address: </span>{{ collection.address }}
+        </div>
       </mat-card-content>
       <mat-card-actions> </mat-card-actions>
     </mat-card>

@@ -1,5 +1,4 @@
 mat-card {
-  width: 60%;
   margin: 20px;
   cursor: pointer;
 }
@@ -9,7 +8,6 @@ mat-card img {
   float: right;
 }
 .description {
-  width: 500px;
   text-overflow: ellipsis;
   height: 100px;
   /* white-space: nowrap; */

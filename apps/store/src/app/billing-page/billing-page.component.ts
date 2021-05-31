@@ -33,10 +33,10 @@ export class BillingPageComponent implements OnInit, OnDestroy {
     private fb: FormBuilder
   ) {}
   billingForm = this.fb.group({
-    name: [''],
+    name: ['', Validators.required],
     email: ['', Validators.required],
-    phone: '',
-    address: '',
+    phone: ['', Validators.required],
+    address: ['', Validators.required],
   });
 
   ngOnInit(): void {
@@ -54,15 +54,11 @@ export class BillingPageComponent implements OnInit, OnDestroy {
       })
     );
   }
-  ngOnDestroy(): void {
-    this.subscriptions.forEach((subscription) => {
-      subscription.unsubscribe();
-    });
-  }
   onSubmit(name: string, email: string, phone: number, address: string) {
     this.books.forEach((book) => {
       this.collection = {
         title: book?.title || '',
+        imgLink: book?.imageLink || '',
         description: book?.description || '',
         authors: book?.authors || '',
         name: name || '',
@@ -79,6 +75,11 @@ export class BillingPageComponent implements OnInit, OnDestroy {
         panelClass: 'blue-snackbar',
       });
       return true;
+    });
+  }
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((subscription) => {
+      subscription.unsubscribe();
     });
   }
 }
