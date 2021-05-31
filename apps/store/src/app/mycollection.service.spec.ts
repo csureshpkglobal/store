@@ -13,6 +13,7 @@ describe('MycollectionService', () => {
     collection = {
       title: 'angular',
       description: 'desc',
+      imgLink: '/',
       authors: 'authors',
       name: 'name',
       email: 'email',

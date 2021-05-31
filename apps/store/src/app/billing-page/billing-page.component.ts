@@ -20,16 +20,16 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./billing-page.component.css'],
 })
 export class BillingPageComponent implements OnInit, OnDestroy {
-  isValid: boolean = true;
+  isValid = true;
   books: Book[] = [];
   collection: Collection;
-  isCart: boolean = false;
+  isCart = false;
   subscriptions: Subscription[] = [];
 
   constructor(
     private mycollectionService: MycollectionService,
     private cartService: CartService,
-    private _snackBar: MatSnackBar,
+    private snackBar: MatSnackBar,
     private fb: FormBuilder
   ) {}
   billingForm = this.fb.group({
@@ -54,7 +54,7 @@ export class BillingPageComponent implements OnInit, OnDestroy {
       })
     );
   }
-  onSubmit(name: string, email: string, phone: number, address: string) {
+  onSubmit(name: string, email: string, phone: number, address: string): void {
     this.books.forEach((book) => {
       this.collection = {
         title: book?.title || '',
@@ -70,7 +70,7 @@ export class BillingPageComponent implements OnInit, OnDestroy {
       if (this.isCart) {
         this.cartService.clearItems();
       }
-      this._snackBar.openFromComponent(SnakBarComponent, {
+      this.snackBar.openFromComponent(SnakBarComponent, {
         duration: 2000,
         panelClass: 'blue-snackbar',
       });

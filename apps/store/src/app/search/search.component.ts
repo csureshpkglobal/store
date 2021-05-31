@@ -11,21 +11,21 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./search.component.css'],
 })
 export class SearchComponent implements OnInit, OnDestroy {
-  key: string = '';
+  key = '';
   items: Book[] = [];
-  searchWord: string = '';
+  searchWord = '';
   subscriptions: Subscription[] = [];
-  search: string = '';
+  search = '';
 
   constructor(private booksService: BooksService, private router: Router) {}
-  ngOnInit() {
+  ngOnInit(): void {
     this.searchWord = this.booksService.getSearchKeyWord();
     // this.subscriptions.push(
     //   this.booksService.books$.subscribe((books) => {
     //     this.items = books;
     //   })
     // );
-    if (this.searchWord != '') {
+    if (this.searchWord !== '') {
       this.subscriptions.push(
         this.booksService
           .getBooksByName(this.searchWord)
@@ -35,13 +35,13 @@ export class SearchComponent implements OnInit, OnDestroy {
       );
     }
   }
-  onSubmit(search: string) {
+  onSubmit(search: string): void {
     this.booksService.getBooksByName(search).subscribe((result) => {
       this.items = result;
     });
     this.booksService.setSearchKeyWord(search);
   }
-  getBookDetails(id: string) {
+  getBookDetails(id: string): void {
     this.booksService.books$.next(this.items[id]);
     this.router.navigate(['/bookdetails']);
   }

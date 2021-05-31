@@ -20,10 +20,10 @@ export class CartItemComponent implements OnInit {
   ngOnInit(): void {
     this.cartItems = this.cartService.getCartItems();
   }
-  deleteItem(id: string) {
+  deleteItem(id: string): void {
     this.cartService.deleteItem(id);
   }
-  proceedToCheckout() {
+  proceedToCheckout(): void {
     this.mycollectionService.mycollection$.next(this.cartItems);
     this.router.navigate(['/billingpage']);
   }

@@ -8,7 +8,7 @@ import { BehaviorSubject, of } from 'rxjs';
 
 import { BooksService } from './books.service';
 
-let mockBooks = [
+const mockBooks = [
   {
     id: '1',
     title: 'Angular',
@@ -30,7 +30,6 @@ class BooksServiceMock {
 describe('BooksService', () => {
   let service: BooksService;
   let search: string;
-  let mocbooks$ = new BehaviorSubject(null);
   let httpTestingController: HttpTestingController;
 
   beforeEach(() => {

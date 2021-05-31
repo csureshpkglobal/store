@@ -9,17 +9,17 @@ import { Book } from './book.model';
 })
 export class BooksService {
   books$ = new BehaviorSubject(null);
-  search: string = '';
+  search = '';
 
   constructor(private httpClient: HttpClient) {}
-  getBooksByName(name: string) {
-    let URL = 'https://www.googleapis.com/books/v1/volumes?q=' + name;
+  getBooksByName(name: string): Observable<Book[]> {
+    const URL = 'https://www.googleapis.com/books/v1/volumes?q=' + name;
 
     return this.httpClient.get(URL).pipe(
       map((res: any) => {
-        let books: Book[] = [];
+        const books: Book[] = [];
         res.items.map((item: any) => {
-          let book: Book = {
+          const book: Book = {
             id: item.id,
             title: item.volumeInfo.title,
             imageLink: item.volumeInfo?.imageLinks?.thumbnail,
@@ -36,7 +36,7 @@ export class BooksService {
       })
     );
   }
-  setSearchKeyWord(search: string) {
+  setSearchKeyWord(search: string): void {
     this.search = search;
   }
   getSearchKeyWord(): string {

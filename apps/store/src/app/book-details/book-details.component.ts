@@ -29,10 +29,10 @@ export class BookDetailsComponent implements OnInit, OnDestroy {
       })
     );
   }
-  addToCart() {
+  addToCart(): void {
     this.cartService.addCartItem(this.bookDetails);
   }
-  buyNow() {
+  buyNow(): void {
     this.myCollectionService.mycollection$.next(this.bookDetails);
     this.router.navigate(['/billingpage']);
   }

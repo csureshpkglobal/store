@@ -44,8 +44,20 @@ describe('BillingPageComponent', () => {
 
     expect(mycollectionService.addCollection).toHaveBeenCalled();
   });
+  it('should check name field', () => {
+    const name = component.billingForm.controls.name;
+    expect(name).toBeTruthy();
+  });
   it('should check email field', () => {
-    let email = component.billingForm.controls['email'];
+    const email = component.billingForm.controls.email;
     expect(email).toBeTruthy();
+  });
+  it('should check phone field', () => {
+    const phone = component.billingForm.controls.phone;
+    expect(phone).toBeTruthy();
+  });
+  it('should check address field', () => {
+    const address = component.billingForm.controls.address;
+    expect(address).toBeTruthy();
   });
 });

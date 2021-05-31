@@ -9,8 +9,6 @@ import { CartItemComponent } from './cart-item.component';
 describe('CartItemComponent', () => {
   let component: CartItemComponent;
   let fixture: ComponentFixture<CartItemComponent>;
-  let cartService: CartService;
-  let mycollectionService: MycollectionService;
   let books: Book[];
 
   beforeEach(async () => {

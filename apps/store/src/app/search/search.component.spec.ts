@@ -8,7 +8,7 @@ import { BooksService } from '../books.service';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { of } from 'rxjs';
 
-let mockBooks = [
+const mockBooks = [
   {
     id: '1',
     title: 'Angular',
