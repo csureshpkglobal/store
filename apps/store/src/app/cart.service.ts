@@ -10,21 +10,21 @@ export class CartService {
   cart$ = new BehaviorSubject(null);
 
   constructor() {}
-  getCartItems() {
+  getCartItems(): Book[] {
     return this.cartItems;
   }
-  addCartItem(book: Book) {
+  addCartItem(book: Book): void {
     this.cartItems.push(book);
     this.cart$.next(this.cartItems.length);
   }
-  deleteItem(id: string) {
-    let index = this.cartItems.findIndex((item) => item.id == id);
-    if (index != -1) {
+  deleteItem(id: string): void {
+    const index = this.cartItems.findIndex((item) => item.id === id);
+    if (index !== -1) {
       this.cartItems.splice(index, 1);
       this.cart$.next(this.cartItems.length);
     }
   }
-  clearItems() {
+  clearItems(): void {
     this.cartItems = [];
     this.cart$.next(this.cartItems.length);
   }

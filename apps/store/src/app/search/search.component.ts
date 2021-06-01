@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BooksService } from '../books.service';
-import { NgForm } from '@angular/forms';
+import { FormBuilder, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Book } from '../book.model';
 import { Subscription } from 'rxjs';
@@ -11,21 +11,23 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./search.component.css'],
 })
 export class SearchComponent implements OnInit, OnDestroy {
-  key = '';
-  items: Book[] = [];
   searchWord = '';
+  items: Book[] = [];
   subscriptions: Subscription[] = [];
-  search = '';
+  searchForm = this.fb.group({
+    searchWord: ['', Validators.required],
+  });
 
-  constructor(private booksService: BooksService, private router: Router) {}
+  constructor(
+    private booksService: BooksService,
+    private router: Router,
+    private fb: FormBuilder
+  ) {}
   ngOnInit(): void {
     this.searchWord = this.booksService.getSearchKeyWord();
-    // this.subscriptions.push(
-    //   this.booksService.books$.subscribe((books) => {
-    //     this.items = books;
-    //   })
-    // );
+
     if (this.searchWord !== '') {
+      this.searchForm.setValue({ searchWord: this.searchWord });
       this.subscriptions.push(
         this.booksService
           .getBooksByName(this.searchWord)
@@ -35,11 +37,15 @@ export class SearchComponent implements OnInit, OnDestroy {
       );
     }
   }
-  onSubmit(search: string): void {
-    this.booksService.getBooksByName(search).subscribe((result) => {
-      this.items = result;
-    });
-    this.booksService.setSearchKeyWord(search);
+  onSubmit(): void {
+    this.booksService
+      .getBooksByName(this.searchForm.controls.searchWord.value)
+      .subscribe((result) => {
+        this.items = result;
+      });
+    this.booksService.setSearchKeyWord(
+      this.searchForm.controls.searchWord.value
+    );
   }
   getBookDetails(id: string): void {
     this.booksService.books$.next(this.items[id]);

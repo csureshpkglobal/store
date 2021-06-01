@@ -1,3 +1,4 @@
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NgForm, ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -14,8 +15,8 @@ describe('BillingPageComponent', () => {
   let cartService: CartService;
   let mycollectionService: MycollectionService;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  beforeEach(() => {
+    TestBed.configureTestingModule({
       declarations: [BillingPageComponent, NgForm],
       imports: [
         MatSnackBarModule,
@@ -23,6 +24,7 @@ describe('BillingPageComponent', () => {
         ReactiveFormsModule,
       ],
       providers: [BooksService, CartService, MycollectionService],
+      schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
   });
 

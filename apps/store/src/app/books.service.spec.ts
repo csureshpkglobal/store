@@ -5,31 +5,18 @@ import {
 } from '@angular/common/http/testing';
 import { fakeAsync, flush, TestBed, tick } from '@angular/core/testing';
 import { BehaviorSubject, of } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { BooksService } from './books.service';
 
-const mockBooks = [
-  {
-    id: '1',
-    title: 'Angular',
-    imageLink: '/',
-    description: 'desc1',
-    authors: 'author1',
-    ratingsCount: '5',
-    publisher: 'pub1',
-    pageCount: '10',
-    language: 'en',
-  },
-];
-class BooksServiceMock {
-  getBooksByName = (search) => {
-    return of(mockBooks);
-  };
-}
+// class BooksServiceMock {
+//   getBooksByName = (search) => {
+//     return of(mockBooks);
+//   };
+// }
 
 describe('BooksService', () => {
   let service: BooksService;
-  let search: string;
   let httpTestingController: HttpTestingController;
 
   beforeEach(() => {
@@ -38,7 +25,6 @@ describe('BooksService', () => {
       providers: [BooksService],
     });
 
-    search = 'angular';
     service = TestBed.inject(BooksService);
     httpTestingController = TestBed.inject(HttpTestingController);
   });
@@ -46,18 +32,32 @@ describe('BooksService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
-  xit('should the all the books as result when getBooksByName is called with search keyword', fakeAsync(() => {
-    service.getBooksByName(search).subscribe((results) => {
-      expect(results).toBe(mockBooks);
+
+  it('should the all the books as result when getBooksByName is called with search keyword', () => {
+    const mockBooks = [
+      {
+        id: '1',
+        title: 'Angular',
+        imageLink: '/',
+        description: 'desc1',
+        authors: 'author1',
+        ratingsCount: '5',
+        publisher: 'pub1',
+        pageCount: '10',
+        language: 'en',
+      },
+    ];
+
+    service.getBooksByName('angular').subscribe((results) => {
+      expect(mockBooks).toBe(results);
     });
-    const mockURL = 'https://www.googleapis.com/books/v1/volumes?q=' + search;
 
-    const req = httpTestingController.expectOne(mockURL);
+    const req = httpTestingController.expectOne(service.BASE_URL + 'angular');
 
-    expect(req.request.url.endsWith(search)).toEqual(true);
+    expect(req.cancelled).toBeFalsy();
+    expect(req.request.responseType).toEqual('json');
+    // expect(req.request.url.endsWith(search)).toEqual(true);
     req.flush(mockBooks);
-    tick(10000);
-
     httpTestingController.verify();
-  }));
+  });
 });

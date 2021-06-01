@@ -1,7 +1,16 @@
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import {
+  HttpClientTestingModule,
+  HttpTestingController,
+} from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterModule } from '@angular/router';
-import { NgForm, NgModel } from '@angular/forms';
+import {
+  FormBuilder,
+  FormsModule,
+  NgForm,
+  NgModel,
+  ReactiveFormsModule,
+} from '@angular/forms';
 
 import { SearchComponent } from './search.component';
 import { BooksService } from '../books.service';
@@ -28,8 +37,13 @@ describe('SearchComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [SearchComponent, NgForm, NgModel],
-      imports: [HttpClientTestingModule, RouterModule.forRoot([])],
+      declarations: [SearchComponent],
+      imports: [
+        HttpClientTestingModule,
+        RouterModule.forRoot([]),
+        FormsModule,
+        ReactiveFormsModule,
+      ],
       providers: [BooksService],
       schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
@@ -39,6 +53,7 @@ describe('SearchComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(SearchComponent);
     component = fixture.componentInstance;
+    component.ngOnInit();
     fixture.detectChanges();
     spyOn(bookService, 'getSearchKeyWord').and.callThrough();
   });
@@ -46,11 +61,44 @@ describe('SearchComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  it('form invalid when empty', () => {
+    expect(component.searchForm.valid).toBeFalsy();
+  });
+  it('form valid when non empty', () => {
+    component.searchForm.setValue({ searchWord: 'Angular' });
+    expect(component.searchForm.valid).toBeTruthy();
+  });
+  it('searchWord field invalid with empty', () => {
+    const searchWord = component.searchForm.controls.searchWord;
+    expect(searchWord.valid).toBeFalsy();
+  });
+  it('searchWord field validity', () => {
+    const searchWord = component.searchForm.controls.searchWord;
+    expect(searchWord.hasError).toBeTruthy();
+  });
+  it('searchWord field validity with value provided', () => {
+    const searchWord = component.searchForm.controls.searchWord;
+    component.searchForm.setValue({ searchWord: 'Angular' });
+    expect(searchWord.valid).toBeTruthy();
+  });
+
   it('should submit form', () => {
+    expect(component.searchForm.valid).toBeFalsy();
+    const searchWord = component.searchForm.controls.searchWord;
+    component.searchForm.setValue({ searchWord: 'Angular' });
+    expect(searchWord.valid).toBeTruthy();
+
+    component.onSubmit();
+
+    expect(searchWord.value).toEqual('Angular');
+  });
+  it('should check getBookDetails', () => {
     spyOn(bookService, 'getBooksByName').and.returnValue(of(mockBooks));
-    spyOn(bookService, 'setSearchKeyWord');
-    component.onSubmit('AngularJS');
-    expect(bookService.getBooksByName).toHaveBeenCalled();
-    expect(bookService.setSearchKeyWord).toHaveBeenCalled();
+    spyOn(bookService, 'setSearchKeyWord').and.returnValue(undefined);
+    component.searchForm.setValue({ searchWord: 'Angular' });
+
+    component.onSubmit();
+
+    expect(bookService.getBooksByName).toBeTruthy();
   });
 });

@@ -25,6 +25,12 @@ export class BillingPageComponent implements OnInit, OnDestroy {
   collection: Collection;
   isCart = false;
   subscriptions: Subscription[] = [];
+  billingForm = this.fb.group({
+    name: ['', Validators.required],
+    email: ['', Validators.required],
+    phone: ['', Validators.required],
+    address: ['', Validators.required],
+  });
 
   constructor(
     private mycollectionService: MycollectionService,
@@ -32,12 +38,6 @@ export class BillingPageComponent implements OnInit, OnDestroy {
     private snackBar: MatSnackBar,
     private fb: FormBuilder
   ) {}
-  billingForm = this.fb.group({
-    name: ['', Validators.required],
-    email: ['', Validators.required],
-    phone: ['', Validators.required],
-    address: ['', Validators.required],
-  });
 
   ngOnInit(): void {
     this.subscriptions.push(

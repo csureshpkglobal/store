@@ -1,17 +1,9 @@
-<form #f="ngForm" (ngSubmit)="onSubmit(f)">
+<form id="searchForm" [formGroup]="searchForm" (ngSubmit)="onSubmit()">
   <mat-form-field>
-    <input
-      matInput
-      name="search"
-      [ngModel]="searchWord"
-      required
-      #search="ngModel"
-      placeholder="Search in Library"
-    />
+    <mat-label>Search in Library</mat-label>
+    <input matInput formControlName="searchWord" />
   </mat-form-field>
-  <span (click)="onSubmit(f.value.search)" class="material-icons searchicon"
-    >search
-  </span>
+  <span (click)="onSubmit()" class="material-icons searchicon">search </span>
 </form>
 <mat-grid-list cols="2" rowHeight="2:1">
   <mat-grid-tile *ngFor="let item of items; let i = index">

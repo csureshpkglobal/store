@@ -30,9 +30,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">63.33% </span>
+                <span class="strong">63.89% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>19/30</span>
+                <span class='fraction'>23/36</span>
             </div>
         
             
@@ -141,7 +141,8 @@
 <a name='L82'></a><a href='#L82'>82</a>
 <a name='L83'></a><a href='#L83'>83</a>
 <a name='L84'></a><a href='#L84'>84</a>
-<a name='L85'></a><a href='#L85'>85</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L85'></a><a href='#L85'>85</a>
+<a name='L86'></a><a href='#L86'>86</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -152,15 +153,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -168,27 +169,23 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -206,6 +203,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -247,49 +249,45 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./billing-page.component.css'],
 })
 export class BillingPageComponent implements OnInit, OnDestroy {
-  isValid: boolean = true;
+  isValid = true;
   books: Book[] = [];
   collection: Collection;
-  isCart: boolean = false;
+  isCart = false;
   subscriptions: Subscription[] = [];
+  billingForm = this.fb.group({
+    name: ['<span class="missing-if-branch" title="if path not taken" >I</span>', Validators.required],
+    email: ['', <span class="cstat-no" title="statement not covered" >Validators.required]</span>,
+    phone: ['', <span class="cstat-no" title="statement not covered" >Validators.r<span class="fstat-no" title="function not covered" >eq</span>uired],</span>
+    address: ['', Va<span class="cstat-no" title="statement not covered" >lidators.required],</span>
+  });
 &nbsp;
-  constructo<span class="missing-if-branch" title="if path not taken" >I</span>r(
-    private myco<span class="cstat-no" title="statement not covered" >llectionService: Myc</span>ollectionService,
-    private cart<span class="cstat-no" title="statement not covered" >Service: Car<span class="fstat-no" title="function not covered" >tS</span>ervice,</span>
-    private _snackBa<span class="cstat-no" title="statement not covered" >r: MatSnackBar,</span>
+  constructor(
+    private mycollectionService: MycollectionService,
+    private cartService: CartService,
+    private snackBar: MatSnackBar,
     private fb: FormBuilder
   ) {}
-  billingForm = this.fb.group({
-    name: [''],
-    email: ['', Validators.required],
-    phone: '',
-    address: '',
-  });
 &nbsp;
   ngOnInit(): void {
     this.subscriptions.push(
-      this.mycollectionService.mycollection$.subscribe((res) =&gt; {
-        if (Array.isArray(res)) {
-          this.isCart = true;
-          res.forEach((book) =&gt; {
-            this.books.push(book);
-          });<span class="branch-1 cbranch-no" title="branch not covered" ><span class="branch-1 cbranch-no" title="branch not covered" ></span></span>
-        } else {<span class="branch-1 cbranch-no" title="branch not covered" ><span class="branch-1 cbranch-no" title="branch not covered" ></span></span>
-          this.isCart = false;<span class="branch-1 cbranch-no" title="branch not covered" ><span class="branch-1 cbranch-no" title="branch not covered" ></span></span>
-          this.books.push(res)<span class="branch-1 cbranch-no" title="branch not covered" >;</span>
-        }<span class="branch-1 cbranch-no" title="branch not covered" ></span>
-      })
-    );<span class="branch-1 cbranch-no" title="branch not covered" ></span>
+      this.mycollectionService.mycollecti<span class="branch-1 cbranch-no" title="branch not covered" >on$.subscribe((r</span>es) =&gt; {<span class="branch-1 cbranch-no" title="branch not covered" ></span>
+        if (Array.isArray(res)) {<span class="branch-1 cbranch-no" title="branch not covered" ><span class="branch-1 cbranch-no" title="branch not covered" ></span></span>
+          this.isCart = true;<span class="branch-1 cbranch-no" title="branch not covered" ><span class="branch-1 cbranch-no" title="branch not covered" ></span></span>
+          res.forEach((book) =&gt; {<span class="branch-1 cbranch-no" title="branch not covered" ><span class="branch-1 cbranch-no" title="branch not covered" ></span></span>
+            this.books.push(bo<span class="branch-1 cbranch-no" title="branch not covered" >ok)</span>;
+          });<span class="branch-1 cbranch-no" title="branch not covered" ></span>
+        } else {
+          this.isCart = false;<span class="branch-1 cbranch-no" title="branch not covered" ></span>
+          this.books.push(res);
+        }
+      })<span class="missing-if-branch" title="if path not taken" >I</span>
+    );<span class="cstat-no" title="statement not covered" ></span>
   }
-  ngOnDestroy(): void {
-    this.sub<span class="missing-if-branch" title="if path not taken" >I</span>scriptions.forEach((subscription) =&gt; {
-      subscripti<span class="cstat-no" title="statement not covered" >on.unsubscribe();</span>
-    });
-  }
-  onSubmit(name: string, email: string, phone: number, address: string) {
+  onSubmit(name: string, email: string, phone: number, address: string): void {
     this.books.forEach((book) =&gt; {
       this.collection = {
         title: book?.title || '',
+        imgLink: book?.imageLink || '',
         description: book?.description || '',
         authors: book?.authors || '',
         name: name || '',
@@ -301,11 +299,16 @@ export class BillingPageComponent implements OnInit, OnDestroy {
       if (this.isCart) {
         this.cartService.clearItems();
       }
-      this._snackBar.openFromComponent(SnakBarComponent, {
+      this.snackBar.openFromComponent(SnakBarComponent, {
         duration: 2000,
         panelClass: 'blue-snackbar',
       });
       return true;
+    });
+  }
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((subscription) =&gt; {
+      subscription.unsubscribe();
     });
   }
 }
@@ -316,7 +319,7 @@ export class BillingPageComponent implements OnInit, OnDestroy {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Sun May 23 2021 21:45:05 GMT+0530 (India Standard Time)
+                at Tue Jun 01 2021 17:29:27 GMT+0530 (India Standard Time)
             </div>
         </div>
         <script src="../../../prettify.js"></script>

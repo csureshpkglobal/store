@@ -22,3 +22,6 @@ form {
 .searchicon:hover {
   cursor: pointer;
 }
+form#searchForm {
+  margin-top: 10px;
+}

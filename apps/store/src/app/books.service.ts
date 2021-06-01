@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { Book } from './book.model';
+import { map } from 'rxjs/internal/operators/map';
 
 @Injectable({
   providedIn: 'root',
@@ -10,12 +10,11 @@ import { Book } from './book.model';
 export class BooksService {
   books$ = new BehaviorSubject(null);
   search = '';
+  BASE_URL = 'https://www.googleapis.com/books/v1/volumes?q=';
 
   constructor(private httpClient: HttpClient) {}
   getBooksByName(name: string): Observable<Book[]> {
-    const URL = 'https://www.googleapis.com/books/v1/volumes?q=' + name;
-
-    return this.httpClient.get(URL).pipe(
+    return this.httpClient.get<Book[]>(this.BASE_URL + name).pipe(
       map((res: any) => {
         const books: Book[] = [];
         res.items.map((item: any) => {
