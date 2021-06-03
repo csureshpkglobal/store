@@ -10,18 +10,18 @@ import { MycollectionService } from './mycollection.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit, OnDestroy {
-  opened: boolean = true;
-  cartCount: number = 0;
-  collectionCount: number = 0;
+  opened = true;
+  cartCount = 0;
+  collectionCount = 0;
   subscriptions: Subscription[] = [];
-  title: string = 'store';
+  title = 'store';
 
   constructor(
     private booksService: BooksService,
     private cartService: CartService,
     private mycollectionService: MycollectionService
   ) {}
-  ngOnInit() {
+  ngOnInit(): void {
     this.subscriptions.push(
       this.cartService.cart$.subscribe((response) => {
         this.cartCount = response;

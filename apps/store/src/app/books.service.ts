@@ -11,12 +11,12 @@ export class BooksService {
   books$ = new BehaviorSubject(null);
   search = '';
   BASE_URL = 'https://www.googleapis.com/books/v1/volumes?q=';
+  books: Book[] = [];
 
   constructor(private httpClient: HttpClient) {}
   getBooksByName(name: string): Observable<Book[]> {
     return this.httpClient.get<Book[]>(this.BASE_URL + name).pipe(
       map((res: any) => {
-        const books: Book[] = [];
         res.items.map((item: any) => {
           const book: Book = {
             id: item.id,
@@ -29,9 +29,9 @@ export class BooksService {
             pageCount: item.volumeInfo.pageCount,
             language: item.volumeInfo.language,
           };
-          books.push(book);
+          this.books.push(book);
         });
-        return books;
+        return this.books;
       })
     );
   }

@@ -11,10 +11,10 @@ export class MycollectionService {
   count$ = new BehaviorSubject(null);
 
   constructor() {}
-  getCollections() {
+  getCollections(): Collection[] {
     return this.collections;
   }
-  addCollection(collection: Collection) {
+  addCollection(collection: Collection): void {
     this.collections.push(collection);
     this.count$.next(this.collections.length);
   }
